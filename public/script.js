@@ -1,6 +1,6 @@
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+    e.preventDefault();//prevent reload
 
-    e.preventDefault();
     //play sound after submit the form
     const audio1 = new Audio('assets/clap.mp3'); 
     const audio2 = new Audio('assets/cooking.mp3')
@@ -27,6 +27,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
     const fileInput = document.getElementById('mushroomImage');
     formData.append('uploadFiles', fileInput.files[0]);
 
+    //fetch answer from API
     try {
         const response = await fetch('/identify', {
             method: 'POST',
@@ -79,7 +80,7 @@ function displayResult(rawOutput) {
 
         // Append the formatted result to the result div
         const resultDiv = document.getElementById("result");
-        resultDiv.innerHTML = ""; // Clear previous results
+        resultDiv.innerHTML = ""; 
         resultDiv.appendChild(container);
     } catch (error) {
         document.getElementById("result").innerText = `Error parsing result: ${error.message}`;

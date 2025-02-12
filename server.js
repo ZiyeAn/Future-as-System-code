@@ -1,9 +1,9 @@
 import express from "express";
-import multer from "multer";
-import dotenv from "dotenv";
+import multer from "multer";//handle file uploads
+import dotenv from "dotenv";//api key
 dotenv.config({path:".env.local"})
-import * as fs from "fs";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import * as fs from "fs";//readfile
+import { GoogleGenerativeAI } from "@google/generative-ai";//gemini
 
 dotenv.config();
 
@@ -27,7 +27,9 @@ function fileToGenerativePart(path, mimeType) {
         },
     };
 }
+
 //identify mushroom function
+//tutorial: https://www.youtube.com/watch?v=Z8F6FvMrN4o
 async function identifyMushrooms(file) {
   try {
     const prompt = `
